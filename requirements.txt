@@ -1,0 +1,4 @@
+flask
+pdfplumber
+scikit-learn
+python-docx
