@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume ATS Checker</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
+    header { background: #1f3a5f; color: #fff; padding: 16px 24px; }
+    header a { color: #fff; text-decoration: none; font-weight: 600; font-size: 20px; }
+    main { max-width: 900px; margin: 24px auto; padding: 0 16px 40px; }
+    .card { background: #fff; border-radius: 10px; padding: 20px 24px; margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    label { font-weight: 600; display: block; margin: 14px 0 6px; }
+    textarea, input[type=file] { width: 100%; padding: 10px; border: 1px solid #ccd3da; border-radius: 6px; font: inherit; }
+    textarea { min-height: 200px; }
+    button { background: #1f3a5f; color: #fff; border: 0; padding: 12px 24px; border-radius: 6px;
+             font-size: 16px; cursor: pointer; margin-top: 16px; }
+    .error { background: #fdecea; color: #b71c1c; padding: 12px 16px; border-radius: 6px; margin-bottom: 16px; }
+    .chip { display: inline-block; padding: 4px 12px; border-radius: 16px; margin: 3px; font-size: 14px; }
+    .good { background: #e3f4e6; color: #1b5e20; }
+    .bad { background: #fdecea; color: #b71c1c; }
+    .top { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .ring { width: 140px; height: 140px; border-radius: 50%; display: grid; place-items: center;
+            background: conic-gradient(var(--c) calc(var(--p) * 1%), #e3e8ee 0); }
+    .ring div { width: 106px; height: 106px; border-radius: 50%; background: #fff; display: grid;
+                place-items: center; font-size: 34px; font-weight: 700; }
+    .bar { background: #e3e8ee; border-radius: 6px; height: 12px; margin: 4px 0 12px; }
+    .bar span { display: block; height: 100%; border-radius: 6px; background: #1f3a5f; }
+    ul { padding-left: 20px; } li { margin: 6px 0; }
+    .tick { color: #1b5e20; font-weight: 700; } .cross { color: #b71c1c; font-weight: 700; }
+    h2 { margin-top: 0; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <header><a href="/">Resume ATS Checker</a></header>
+  <main>{% block content %}{% endblock %}</main>
+</body>
+</html>
