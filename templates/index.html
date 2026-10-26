@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Check how well your resume matches a job</h2>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <form method="post" action="/analyze" enctype="multipart/form-data">
+    <label for="resume">1. Upload your resume (PDF, DOCX or TXT)</label>
+    <input type="file" id="resume" name="resume" accept=".pdf,.docx,.txt" required>
+    <label for="jd">2. Paste the job description</label>
+    <textarea id="jd" name="jd" placeholder="Paste the full job description here..." required>{{ jd }}</textarea>
+    <button type="submit">Check my resume</button>
+  </form>
+  <p style="color:#666;font-size:14px">Your file is read in memory and is not saved anywhere.</p>
+</div>
+{% endblock %}
