@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card top">
+  {% set color = '#2e7d32' if r.score >= 75 else '#f9a825' if r.score >= 50 else '#c62828' %}
+  <div class="ring" style="--p: {{ r.score }}; --c: {{ color }}"><div>{{ r.score }}</div></div>
+  <div style="flex:1;min-width:240px">
+    <h2 style="margin-bottom:4px">{{ r.band }}</h2>
+    <p style="margin-top:0;color:#555">Your ATS score is {{ r.score }} out of 100.</p>
+    <div>Keyword match: {{ r.keyword_points }} / 60</div>
+    <div class="bar"><span style="width: {{ r.keyword_points / 60 * 100 }}%"></span></div>
+    <div>Sections: {{ r.section_points }} / 20</div>
+    <div class="bar"><span style="width: {{ r.section_points / 20 * 100 }}%"></span></div>
+    <div>Formatting: {{ r.format_points }} / 20</div>
+    <div class="bar"><span style="width: {{ r.format_points / 20 * 100 }}%"></span></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Keywords from the job description</h2>
+  <p><b>Found in your resume ({{ r.matched|length }})</b></p>
+  {% for k in r.matched %}<span class="chip good">{{ k }}</span>{% else %}<i>None found</i>{% endfor %}
+  <p><b>Missing ({{ r.missing|length }})</b></p>
+  {% for k in r.missing %}<span class="chip bad">{{ k }}</span>{% else %}<i>Nothing missing</i>{% endfor %}
+  <p style="color:#666;font-size:14px">Overall text similarity with the job description: {{ r.similarity }}%</p>
+</div>
+
+<div class="card">
+  <h2>Section and format checks</h2>
+  <ul style="list-style:none;padding:0">
+    {% for c in r.section_checks + r.format_checks %}
+    <li>{% if c.ok %}<span class="tick">&#10003;</span>{% else %}<span class="cross">&#10007;</span>{% endif %} {{ c.name }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="card">
+  <h2>How to improve</h2>
+  <ul>{% for t in r.tips %}<li>{{ t }}</li>{% endfor %}</ul>
+</div>
+
+<a href="/"><button>Check another resume</button></a>
+{% endblock %}
